@@ -9,4 +9,9 @@
 
     <!--  Channel name for foreground notification  -->
     <string name="notification_channel_name">Background Service</string>
+
+    <!--  Activity titles  -->
+    <string name="history_activity_title">History</string>
+    <string name="settings_activity_title">Settings</string>
+    <string name="about_activity_title">About</string>
 </resources>

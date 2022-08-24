@@ -40,6 +40,7 @@
         </receiver>
 
         <!-- Front end of the app -->
+        <!-- History activity - default activity -->
         <activity
             android:name=".activities.HistoryActivity"
             android:exported="true" >
@@ -49,6 +50,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Settings activity -->
+        <activity android:name=".activities.SettingsActivity" android:parentActivityName=".activities.HistoryActivity"/>
+
+        <!-- About activity -->
+        <activity android:name=".activities.AboutActivity" android:parentActivityName=".activities.HistoryActivity"/>
 
         <!-- Back end of the app -->
         <service android:enabled="true" android:name=".services.MyService" />

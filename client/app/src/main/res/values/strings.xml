@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MyNotifier</string>
+
+    <!--  Broadcast action for restarting service when destroyed  -->
+    <string name="restarter_action">RestartMyService</string>
+
+    <!--  Channel ID for foreground notification  -->
+    <string name="notification_channel_id">example.permanence</string>
+
+    <!--  Channel name for foreground notification  -->
+    <string name="notification_channel_name">Background Service</string>
 </resources>

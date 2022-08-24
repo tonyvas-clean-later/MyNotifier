@@ -20,7 +20,7 @@
 
         <!-- Broadcast receiver to start service on boot -->
         <receiver
-            android:name=".Autostarter"
+            android:name=".services.Autostarter"
             android:exported="true"
             android:enabled="true">
             <intent-filter>
@@ -30,7 +30,7 @@
 
         <!-- Broadcast receiver to start service on once its been killed and asked for a restart -->
         <receiver
-            android:name=".Restarter"
+            android:name=".services.Restarter"
             android:exported="true"
             android:enabled="true">
             <intent-filter>
@@ -41,7 +41,7 @@
 
         <!-- Front end of the app -->
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.HistoryActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,7 +51,7 @@
         </activity>
 
         <!-- Back end of the app -->
-        <service android:enabled="true" android:name=".MyService" />
+        <service android:enabled="true" android:name=".services.MyService" />
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.example.mynotifier;
+package com.example.mynotifier.services;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -11,6 +11,8 @@ import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 import androidx.core.app.NotificationCompat;
+
+import com.example.mynotifier.R;
 
 import java.util.Timer;
 import java.util.TimerTask;

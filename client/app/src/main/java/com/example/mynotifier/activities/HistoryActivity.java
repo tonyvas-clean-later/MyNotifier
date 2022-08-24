@@ -26,17 +26,17 @@ public class HistoryActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.burger_menu, menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.burger_menu_settings:
+            case R.id.main_menu_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
-            case R.id.burger_menu_about:
+            case R.id.main_menu_about:
                 startActivity(new Intent(this, AboutActivity.class));
                 return true;
             default:

@@ -13,6 +13,7 @@ import android.util.Log;
 import androidx.core.app.NotificationCompat;
 
 import com.example.mynotifier.R;
+import com.example.mynotifier.serviceHelpers.RestartOnDeath;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -48,7 +49,7 @@ public class MyService extends Service {
         // Create and broadcast intent to restart service
         Intent bcIntent = new Intent();
         bcIntent.setAction(getResources().getString(R.string.restarter_action));
-        bcIntent.setClass(this, Restarter.class);
+        bcIntent.setClass(this, RestartOnDeath.class);
         this.sendBroadcast(bcIntent);
     }
 

@@ -1,4 +1,4 @@
-package com.example.mynotifier.services;
+package com.example.mynotifier.serviceHelpers;
 
 import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
@@ -7,8 +7,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 
-public class ServiceStarter {
-    private static final String TAG = "ServiceStarter reeeeeee";
+public class ServiceManager {
+    private static final String TAG = "ServiceManager reeeeeee";
 
     public static boolean isRunning(Context context, Class<?> cls){
         // Get activity manager

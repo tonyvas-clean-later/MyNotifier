@@ -20,7 +20,7 @@
 
         <!-- Broadcast receiver to start service on boot -->
         <receiver
-            android:name=".services.Autostarter"
+            android:name=".serviceHelpers.StartOnBoot"
             android:exported="true"
             android:enabled="true">
             <intent-filter>
@@ -30,7 +30,7 @@
 
         <!-- Broadcast receiver to start service on once its been killed and asked for a restart -->
         <receiver
-            android:name=".services.Restarter"
+            android:name=".serviceHelpers.RestartOnDeath"
             android:exported="true"
             android:enabled="true">
             <intent-filter>

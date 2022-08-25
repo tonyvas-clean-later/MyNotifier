@@ -5,8 +5,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.mynotifier.R;
-import com.example.mynotifier.services.MyService;
-import com.example.mynotifier.services.ServiceStarter;
 
 public class SettingsActivity extends AppCompatActivity {
     private static final String TAG = "SettingsActivity reeeee";

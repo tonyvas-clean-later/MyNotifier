@@ -92,10 +92,19 @@ class DatabaseConnection{
         })
     }
 
-    getUser(uid){
+    getAllUsers(){
         return new Promise((resolve, reject) => {
             // Get all users
             this._read(USER_DATA).then(users => {
+                resolve(users);
+            })
+        })
+    }
+
+    getUser(uid){
+        return new Promise((resolve, reject) => {
+            // Get all users
+            this.getAllUsers().then(users => {
                 // Return user with uid
                 resolve(users[uid])
             })
@@ -126,21 +135,25 @@ class DatabaseConnection{
         })
     }
 
-    getNotification(uid, nid){
+    getAllNotifications(){
         return new Promise((resolve, reject) => {
             // Get all notifications
-            this.getNotifications(uid).then(notifs => {
-                // Resolve the one with the nid
-                resolve(notifs[nid]);
+            this._read(NOTIFICATION_DATA).then(notifs => {
+                for (let nid in notifs){
+                    // Recreate the date field as Date instance (Saving to json converts it to string)
+                    notifs[nid].date = new Date(notifs[nid].date);
+                }
+
+                resolve(notifs);
             })
         })
     }
 
-    getNotifications(uid){
+    getUserNotifications(uid){
         return new Promise((resolve, reject) => {
-            // Get all notifications
-            this._read(NOTIFICATION_DATA).then(allNotifs => {
+            this.getAllNotifications().then(allNotifs => {
                 let userNotifs = {};
+
                 // Loop over all notifications and seperate out the ones with the uid
                 for (let nid in allNotifs){
                     let notif = allNotifs[nid];
@@ -149,13 +162,17 @@ class DatabaseConnection{
                     }
                 }
 
-                // Loop over all the seperated user notifications
-                for (let nid in userNotifs){
-                    // Recreate the date field as Date instance (Saving to json converts it to string)
-                    userNotifs[nid].date = new Date(userNotifs[nid].date);
-                }
-
                 resolve(userNotifs);
+            })
+        })
+    }
+
+    getUserNotification(uid, nid){
+        return new Promise((resolve, reject) => {
+            // Get user notifications
+            this.getUserNotifications(uid).then(notifs => {
+                // Resolve the one with the nid
+                resolve(notifs[nid]);
             })
         })
     }

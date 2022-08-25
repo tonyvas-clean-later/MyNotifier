@@ -17,6 +17,9 @@ http.createServer(app).listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`);
 })
 
+// Use JSON handler for http bodies
+app.use(express.json());
+
 // Log all http requests
 app.all('*', (req, res, next) => {
     console.log(req.url);

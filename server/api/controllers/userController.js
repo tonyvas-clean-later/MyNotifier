@@ -1,10 +1,15 @@
 let router = require('express').Router();
 let model = require('../models/userModel');
 
-// Create a new user
-// Should return the user's public/private key pair for future authentication
-router.post('/api/users', (req, res) => {
-    res.status(200).end();
+router.post('/users', (req, res) => {
+    model.createUser().then(user => {
+        // Create user and send its info
+        res.status(200).json(user);
+    }).catch(err => {
+        // If failed to create log error and send server error code
+        console.error(err);
+        res.status(500).end();
+    })
 })
 
 module.exports = router;

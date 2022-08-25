@@ -137,6 +137,9 @@ class DatabaseConnection{
                         }).catch(reject)
                     }).catch(reject)
                 }
+                else{
+                    reject(new Error('Invalid UserID!'));
+                }
             }).catch(reject)
         })
     }

@@ -113,24 +113,30 @@ class DatabaseConnection{
 
     createNotification(uid, title, content, date){
         return new Promise((resolve, reject) => {
-            // Get all notifications
-            this._read(NOTIFICATION_DATA).then(notifs => {
-                // Get next available notification id
-                this._getNextId(NOTIFICATION_DATA).then(nid => {
-                    // Insert notification at the next available id
-                    notifs[nid] = {
-                        uid: uid,
-                        title: title,
-                        content: content,
-                        date: date
-                    };
-    
-                    // Write modified notifications object
-                    this._write(NOTIFICATION_DATA, notifs).then(() => {
-                        // Resolve with new nid
-                        resolve(nid);
+            // Get user with uid
+            this.getUser(uid).then(user => {
+                // Check if user exists
+                if (user){
+                    // Get all notifications
+                    this._read(NOTIFICATION_DATA).then(notifs => {
+                        // Get next available notification id
+                        this._getNextId(NOTIFICATION_DATA).then(nid => {
+                            // Insert notification at the next available id
+                            notifs[nid] = {
+                                uid: uid,
+                                title: title,
+                                content: content,
+                                date: date
+                            };
+            
+                            // Write modified notifications object
+                            this._write(NOTIFICATION_DATA, notifs).then(() => {
+                                // Resolve with new nid
+                                resolve(nid);
+                            }).catch(reject)
+                        }).catch(reject)
                     }).catch(reject)
-                }).catch(reject)
+                }
             }).catch(reject)
         })
     }

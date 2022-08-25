@@ -2,7 +2,7 @@
     <string name="app_name">MyNotifier</string>
 
     <!--  Broadcast action for restarting service when destroyed  -->
-    <string name="restarter_action">RestartMyService</string>
+    <string name="restart_on_death_action">RequestRestartMyService</string>
 
     <!--  Channel ID for foreground notification  -->
     <string name="notification_channel_id">example.permanence</string>
@@ -14,4 +14,18 @@
     <string name="history_activity_title">History</string>
     <string name="settings_activity_title">Settings</string>
     <string name="about_activity_title">About</string>
+
+    <!-- Settings -->
+    <string name="setting_service_enable_title">MyNotifier Service</string>
+    <string name="setting_service_enable_description">Enables/Disables app fetching and notifying you of new notifications automatically</string>
+
+    <string name="setting_dark_mode_enable_title">Dark Mode</string>
+    <string name="setting_dark_mode_enable_description">Toggles between light mode and dark mode</string>
+
+    <string name="setting_server_address_title">Server Address</string>
+    <string name="setting_server_address_description">Network address of server to fetch notifications from, can be a hostname, domain, or IP\nChanges will apply on service restart</string>
+
+    <string name="setting_server_port_title">Server Port</string>
+    <string name="setting_server_port_description">Port on which server is running, valid port values are between integers between 0 and 65536\nChanges will apply on service restart</string>
+
 </resources>

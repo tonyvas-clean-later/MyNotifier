@@ -8,7 +8,7 @@ import android.os.Build;
 import android.util.Log;
 
 public class ServiceManager {
-    private static final String TAG = "ServiceManager reeeeeee";
+    private static final String TAG = "ServiceManager reee";
 
     public static boolean isRunning(Context context, Class<?> cls){
         // Get activity manager
@@ -35,12 +35,18 @@ public class ServiceManager {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 // Start service in foreground
                 context.startForegroundService(service);
-                Log.d(TAG, "Started using startForegroundService!");
             } else {
                 // Start service in background
                 context.startService(service);
-                Log.d(TAG, "Started using startService!");
             }
+        }
+    }
+
+    public static void stopIfRunning(Context context, Class<?> cls){
+        // Check if service is already running
+        if (isRunning(context, cls)){
+            // Stop if it is
+            context.stopService(new Intent(context, cls));
         }
     }
 }

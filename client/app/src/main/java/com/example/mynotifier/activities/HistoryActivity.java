@@ -8,20 +8,22 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.example.mynotifier.R;
+import com.example.mynotifier.config.ConfigManager;
 import com.example.mynotifier.services.MyService;
 import com.example.mynotifier.serviceHelpers.ServiceManager;
 
 public class HistoryActivity extends AppCompatActivity {
-    private static final String TAG = "HistoryActivity reeeeee";
+    private static final String TAG = "HistoryActivity reee";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         setTitleBar();
-
-        ServiceManager.startIfNotRunning(this, MyService.class);
+//        ServiceManager.startIfNotRunning(this, MyService.class);
     }
 
     @Override

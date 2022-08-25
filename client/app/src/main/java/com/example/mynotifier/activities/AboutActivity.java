@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mynotifier.R;
 
 public class AboutActivity extends AppCompatActivity {
-    private static final String TAG = "AboutActivity reeeeee";
+    private static final String TAG = "AboutActivity reee";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,7 @@ public class AboutActivity extends AppCompatActivity {
 
         if (actionBar != null){
             actionBar.setTitle(R.string.about_activity_title);
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
 }

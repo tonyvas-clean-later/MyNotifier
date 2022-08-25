@@ -19,7 +19,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MyService extends Service {
-    private static final String TAG = "MyService reeeeeeee";
+    private static final String TAG = "MyService reee";
     private static final int TIMER_DELAY = 0;
     private static final int TIMER_PERIOD = 1000;
 
@@ -34,28 +34,28 @@ public class MyService extends Service {
 
     @Override
     public void onCreate() {
-        Log.d(TAG, "onCreate :)");
+        Log.d(TAG, "Created :)");
         // Create persistent notification to run service without it getting destroyed after 5 sec
         startForeground(69, createForegroundNotification());
     }
 
     public void onDestroy() {
-        Log.d(TAG, "onDestroy :(");
+        Log.d(TAG, "Destroyed :(");
         super.onDestroy();
 
         // Stop whatever the service is currently doing
         this.stop();
 
-        // Create and broadcast intent to restart service
+        // Create and broadcast intent to request service restart
         Intent bcIntent = new Intent();
-        bcIntent.setAction(getResources().getString(R.string.restarter_action));
+        bcIntent.setAction(getResources().getString(R.string.restart_on_death_action));
         bcIntent.setClass(this, RestartOnDeath.class);
         this.sendBroadcast(bcIntent);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG, "onStartCommand!");
+        Log.d(TAG, "Started!");
 
         // Start whatever this service needs to do
         this.start();
@@ -70,6 +70,7 @@ public class MyService extends Service {
 
     private void stop(){
         stopTimer();
+        removeForegroundNotification();
     }
 
     private Notification createForegroundNotification(){
@@ -103,9 +104,11 @@ public class MyService extends Service {
         }
     }
 
-    private void startTimer(){
-        Log.d(TAG, "startTimer!");
+    private void removeForegroundNotification(){
 
+    }
+
+    private void startTimer(){
         this.timer = new Timer();
         this.timerRunCount = 0;
 

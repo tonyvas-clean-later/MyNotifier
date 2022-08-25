@@ -35,7 +35,7 @@
             android:enabled="true">
             <intent-filter>
                 <!-- Restarter action from string resources -->
-                <action android:name="@string/restarter_action" />
+                <action android:name="@string/restart_on_death_action" />
             </intent-filter>
         </receiver>
 

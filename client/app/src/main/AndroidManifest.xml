@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.mynotifier" >
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+        tools:targetApi="31" >
+
+        <!-- Broadcast receiver to start service on boot -->
+        <receiver
+            android:name=".serviceHelpers.StartOnBoot"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Broadcast receiver to start service on once its been killed and asked for a restart -->
+        <receiver
+            android:name=".serviceHelpers.RestartOnDeath"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <!-- Restarter action from string resources -->
+                <action android:name="@string/restart_on_death_action" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Front end of the app -->
+        <!-- History activity - default activity -->
+        <activity
+            android:name=".activities.HistoryActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Settings activity -->
+        <activity android:name=".activities.SettingsActivity" android:parentActivityName=".activities.HistoryActivity"/>
+
+        <!-- About activity -->
+        <activity android:name=".activities.AboutActivity" android:parentActivityName=".activities.HistoryActivity"/>
+
+        <!-- Back end of the app -->
+        <service android:enabled="true" android:name=".services.MyService" />
+
+        <!-- TODO - Add a debug/log activity to view errors and info about app -->
+    </application>
+
+</manifest>

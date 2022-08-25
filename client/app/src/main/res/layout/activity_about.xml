@@ -8,6 +8,6 @@
     android:orientation="vertical"
     tools:context=".activities.SettingsActivity">
 
-
+    <!--  TODO - Add basic about information  -->
 
 </LinearLayout>

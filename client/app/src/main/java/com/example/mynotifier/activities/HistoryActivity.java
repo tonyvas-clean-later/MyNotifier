@@ -23,7 +23,6 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         setTitleBar();
-//        ServiceManager.startIfNotRunning(this, MyService.class);
     }
 
     @Override
@@ -34,6 +33,7 @@ public class HistoryActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        // TODO - Fix these warning
         switch (item.getItemId()){
             case R.id.main_menu_settings:
                 startActivity(new Intent(this, SettingsActivity.class));

@@ -36,6 +36,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         config = new ConfigManager(this);
 
+        // Handling user input for config
         findViews();
         writeCurrentSettings();
         attachSettingViewListeners();
@@ -70,9 +71,11 @@ public class SettingsActivity extends AppCompatActivity {
         serviceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                // Save new setting to config
                 config.setIsServiceEnabled(b);
 
                 try {
+                    // Start/Stop service depending on new setting
                     if (b){
                         ServiceManager.startIfNotRunning(context, MyService.class);
                     }
@@ -94,9 +97,11 @@ public class SettingsActivity extends AppCompatActivity {
         darkModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                // Save new setting to config
                 config.setIsDarkMode(b);
 
                 try {
+                    // Toggle default light/night mode based on new setting
                     if (b){
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     }
@@ -125,6 +130,8 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 try {
+                    // Save value of field to config
+                    // Happens on every change
                     config.setServerAddress(editable.toString());
                 }
                 catch (Exception e){
@@ -147,6 +154,8 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 try {
+                    // Save value of field to config
+                    // Happens on every change
                     int port = Integer.parseInt(editable.toString());
                     config.setServerPort(port);
                 }
@@ -167,6 +176,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void hideKeyboard() {
+        // TODO - hide keyboard when clicking off an EditText
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         if (inputMethodManager.isAcceptingText()){
             inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);

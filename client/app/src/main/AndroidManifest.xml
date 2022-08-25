@@ -59,6 +59,8 @@
 
         <!-- Back end of the app -->
         <service android:enabled="true" android:name=".services.MyService" />
+
+        <!-- TODO - Add a debug/log activity to view errors and info about app -->
     </application>
 
 </manifest>

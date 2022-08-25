@@ -65,12 +65,12 @@ public class MyService extends Service {
     }
 
     private void start(){
+        // TODO - Add actual functionality to service instead of being slightly more than a stub
         startTimer();
     }
 
     private void stop(){
         stopTimer();
-        removeForegroundNotification();
     }
 
     private Notification createForegroundNotification(){
@@ -102,10 +102,6 @@ public class MyService extends Service {
             // Create default notification
             return new Notification();
         }
-    }
-
-    private void removeForegroundNotification(){
-
     }
 
     private void startTimer(){

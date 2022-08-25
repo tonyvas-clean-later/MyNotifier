@@ -8,6 +8,6 @@
     android:orientation="vertical"
     tools:context=".activities.HistoryActivity">
 
-
+    <!--  TODO - Implement history, somewhat requires service to be working  -->
 
 </LinearLayout>

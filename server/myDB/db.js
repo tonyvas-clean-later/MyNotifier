@@ -111,6 +111,24 @@ class DatabaseConnection{
         })
     }
 
+    getUserIDByKeyPair(pubKey, privKey){
+        return new Promise((resolve, reject) => {
+            // Get all users
+            this.getAllUsers().then(users => {
+                // Find user with keys
+                for (let uid in users){
+                    if (users[uid].public_key === pubKey && users[uid].private_key === privKey){
+                        // Resolve the uid if found
+                        return resolve(uid);
+                    }
+                }
+
+                // Resolve null if not found
+                resolve(null)
+            }).catch(reject);
+        })
+    }
+
     createNotification(uid, title, content, date){
         return new Promise((resolve, reject) => {
             // Get user with uid

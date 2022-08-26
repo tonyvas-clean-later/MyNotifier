@@ -36,26 +36,43 @@ function getUserNotifications(req){
         let {public} = req.params;
         // Get private key from headers
         let {private} = req.headers;
+        // Get nid csv from query
+        let nidCsv = req.query.nid
 
         // Get user id from public/private key pair
         new DatabaseConnection().getUserIDByKeyPair(public, private).then(uid => {
             if (uid !== null){
                 // If user exists, get all its notifications
                 new DatabaseConnection().getUserNotifications(uid).then(notifs => {
-                    let filtered = [];
-
-                    // Loop over all notifications from database
+                    let filtered = {};
+                    // Filter uid out of notifications
                     for (let nid in notifs){
                         let notif = notifs[nid];
-                        // Filter out the ids, and only keep data relevant to the user
-                        filtered.push({
+                        filtered[nid] = {
                             title: notif.title,
                             content: notif.content,
                             date: notif.date
-                        })
+                        }
                     }
-                    
-                    resolve(filtered);
+
+                    // Check if nid csv was provided
+                    if (nidCsv){
+                        // Split csv into list
+                        nidList = nidCsv.trim().split(',');
+
+                        // Filter out only the ids requested
+                        let requested = {};
+                        for (let nid of nidList){
+                            requested[nid] = filtered[nid];
+                        }
+
+                        // Resolve with the requested notifications
+                        resolve(requested);
+                    }
+                    else{
+                        // Resolve with the filtered notifications
+                        resolve(filtered);
+                    }
                 }).catch(err => {
                     reject({code: 500, reason: 'Database error!', error: err});
                 })

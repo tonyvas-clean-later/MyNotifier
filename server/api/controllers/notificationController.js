@@ -11,7 +11,7 @@ router.post('/users/:public/notifications', (req, res) => {
     })
 })
 
-// Get all user notifications
+// Get user notifications
 router.get('/users/:public/notifications', (req, res) => {
     model.getUserNotifications(req).then(data => {
         res.status(200).json(data);

@@ -1,22 +1,24 @@
 let router = require('express').Router();
 let model = require('../models/notificationModel');
 
-// Create a new notification for user with uid
-// Require authentication
-router.post('/users/:uid/notifications', (req, res) => {
-    res.status(200).end();
+// Create user notification
+router.post('/users/:public/notifications', (req, res) => {
+    model.createNotification(req).then(() => {
+        res.status(200).end();
+    }).catch(err => {
+        console.error(err);
+        res.status(err.code).json({reason: err.reason});
+    })
 })
 
-// Get all notifications for user with uid
-// Require authentication
-router.get('/users/:uid/notifications', (req, res) => {
-    res.status(200).end();
-})
-
-// Get specific notification with nid for user with nid
-// Require authentication
-router.get('/users/:uid/notification/:nid', (req, res) => {
-    res.status(200).end();
+// Get all user notifications
+router.get('/users/:public/notifications', (req, res) => {
+    model.getUserNotifications(req).then(data => {
+        res.status(200).json(data);
+    }).catch(err => {
+        console.error(err);
+        res.status(err.code).json({reason: err.reason});
+    })
 })
 
 module.exports = router;

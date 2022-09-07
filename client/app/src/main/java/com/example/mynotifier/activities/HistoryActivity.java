@@ -23,6 +23,13 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         setTitleBar();
+
+        // If service is enabled in config
+        if (new ConfigManager(this).getIsServiceEnabled()){
+            // Try starting the service if not running
+            // Useful for when the service crashes, or app gets force stopped / reinstalled
+            ServiceManager.startIfNotRunning(this, MyService.class);
+        }
     }
 
     @Override

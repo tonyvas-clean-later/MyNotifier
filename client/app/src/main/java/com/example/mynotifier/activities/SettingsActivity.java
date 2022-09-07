@@ -174,6 +174,18 @@ public class SettingsActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
+    @Override
+    protected void onDestroy() {
+        // Restart service if needed when exiting settings
+        if (config.getIsServiceEnabled()){
+            // Stop
+            ServiceManager.stopIfRunning(this, MyService.class);
+            // Restart
+            ServiceManager.startIfNotRunning(this, MyService.class);
+        }
+
+        super.onDestroy();
+    }
 
     private void hideKeyboard() {
         // TODO - hide keyboard when clicking off an EditText

@@ -23,9 +23,9 @@
     <string name="setting_dark_mode_enable_description">Toggles between light mode and dark mode</string>
 
     <string name="setting_server_address_title">Server Address</string>
-    <string name="setting_server_address_description">Network address of server to fetch notifications from, can be a hostname, domain, or IP\nChanges will apply on service restart</string>
+    <string name="setting_server_address_description">Network address of server to fetch notifications from, can be a hostname, domain, or IP</string>
 
     <string name="setting_server_port_title">Server Port</string>
-    <string name="setting_server_port_description">Port on which server is running, valid port values are between integers between 0 and 65536\nChanges will apply on service restart</string>
+    <string name="setting_server_port_description">Port on which server is running, valid port values are between integers between 0 and 65536</string>
 
 </resources>
